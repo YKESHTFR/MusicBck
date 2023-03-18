@@ -1,0 +1,41 @@
+public class Reservation {
+    private String bookName;
+    private Date pickupDate;
+
+    public void reserveBook(String bookName, Date pickupDate) {
+        this.bookName = bookName;
+        this.pickupDate = pickupDate;
+    }
+
+    public void cancelReservation() {
+        this.bookName = null;
+        this.pickupDate = null;
+    }
+
+    public ReservationMemento save() {
+        return new ReservationMemento(bookName, pickupDate);
+    }
+
+    public void restore(ReservationMemento memento) {
+        this.bookName = memento.getBookName();
+        this.pickupDate = memento.getPickupDate();
+    }
+
+    public static class ReservationMemento {
+        private final String bookName;
+        private final Date pickupDate;
+
+        public ReservationMemento(String bookName, Date pickupDate) {
+            this.bookName = bookName;
+            this.pickupDate = pickupDate;
+        }
+
+        public String getBookName() {
+            return bookName;
+        }
+
+        public Date getPickupDate() {
+            return pickupDate;
+        }
+    }
+}
