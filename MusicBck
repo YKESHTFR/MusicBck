@@ -1,0 +1,53 @@
+public class MusicTrack {
+    private String name;
+    private List<Effect> effects;
+    private Configuration configuration;
+
+    public MusicTrack(String name) {
+        this.name = name;
+        this.effects = new ArrayList<>();
+        this.configuration = new Configuration();
+    }
+
+    public void addEffect(Effect effect) {
+        effects.add(effect);
+    }
+
+    public void applyConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+    }
+
+    public Memento save() {
+        return new Memento(name, effects, configuration);
+    }
+
+    public void restore(Memento memento) {
+        this.name = memento.getName();
+        this.effects = memento.getEffects();
+        this.configuration = memento.getConfiguration();
+    }
+
+    // Métodos getters y setters
+}
+
+public class Configuration {
+    // Atributos de configuración de una pista de música
+}
+
+public class Effect {
+    // Atributos de un efecto aplicado a una pista de música
+}
+
+public class Memento {
+    private String name;
+    private List<Effect> effects;
+    private Configuration configuration;
+
+    public Memento(String name, List<Effect> effects, Configuration configuration) {
+        this.name = name;
+        this.effects = new ArrayList<>(effects);
+        this.configuration = new Configuration(configuration);
+    }
+
+    // Métodos getters
+}
